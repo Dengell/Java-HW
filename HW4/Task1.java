@@ -1,102 +1,79 @@
 package HW4;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.Queue;
+import java.util.Random;
 
 public class Task1 {
-    public static void main(String[] args) {
-        // Умножение
-        Deque<Integer> a = createDeque(22);
-        Deque<Integer> b = createDeque(18);
+    static int makeInt(Deque<String> arr) {
+        int result=0;
+        String inS;
+        int krat = 1;
 
-        System.out.println(multi(a, b));
-
-        // Сложение
-        Deque<Integer> x = createDeque(-734);
-        Deque<Integer> y = createDeque(236);
-
-        System.out.println(sum(x, y));
-
-    }
-
-    static LinkedList<Integer> sum(Deque<Integer> a, Deque<Integer> b) {
-        int sum = 0;
-        int signX = a.getLast() / Math.abs(a.getLast());
-        
-        int signY = b.getLast() / Math.abs(b.getLast());
-        
-        if (a.size() >= b.size()) {
-            for (int i = 0; i <= a.size() - b.size(); i++) {
-                b.addLast(0);
-            }
-            
-        } else {
-            for (int i = 0; i <= b.size() - a.size(); i++) {
-                a.addLast(0);
-            }
-        }
-
-        int i = 0;
-        while (!a.isEmpty()) {
-            int x = a.pollFirst() * (int) Math.pow(10, i);
-            
-            int y = b.pollFirst() * (int) Math.pow(10, i);
-            
-            sum += (Math.abs(x) * signX) + (Math.abs(y) * signY);
-            i++;
-            
-            
-        }
-
-        return linkedRes(sum);
-    }
-
-    static LinkedList<Integer> multi(Deque<Integer> a, Deque<Integer> b) {
-
-        int mult = 0;
-        int i = 0;
-
-        for (int x : a) {
-            int j = 0;
-            for (int y : b) {
-                mult += (x * (int) Math.pow(10, i)) * (y * (int) Math.pow(10, j));
-                j++;
-            }
-            i++;
-        }
-
-        return linkedRes(mult);
-    }
-
-    static Deque<Integer> createDeque(int x) {
-        Deque<Integer> a = new LinkedList<>();
-        while (x != 0) {
-            a.add(x % 10);
-            x /= 10;
-        }
-
-        return a;
-    }
-
-    static LinkedList<Integer> linkedRes(int x) {
-        LinkedList<Integer> res = new LinkedList<>();
-
-        while (x != 0) {
-            if (x < 10 && x > -10) {
-                res.addFirst(x % 10);
-
+        while(arr.size() != 0) {
+            inS = arr.pollFirst();
+            if (!inS.equals("-")) {
+                result = result + krat * (Integer.parseInt(inS));
+                krat *= 10;
             } else {
-                res.addFirst(Math.abs(x) % 10);
-
+                result *= -1;
             }
-            x /= 10;
         }
-
-        return res;
+        return result;
     }
 
+    static Queue<String> Pack(int in) {
+        Deque<String> q = new LinkedList<>();
+        int temp = 0;
+        boolean negative = false;
+        if (in < 0) {
+            in *= -1;
+            negative = true; 
+        }
+        while (in > 0) {
+            temp = in % 10;
+            in = (in - temp) / 10;
+            q.addFirst(Integer.toString(temp));
+        }
+        if (negative) {
+            q.addFirst("-");
+        }
+        return q;
+    }
+    public static void main(String[] args) {
+
+        Deque<String> list_1 = new LinkedList<>(Arrays.asList("3","2","1"));
+        Deque<String> list_2 = new LinkedList<>(Arrays.asList("7","4","-"));
+        Deque<String> list_3 = new LinkedList<>(Arrays.asList("5","2"));
+        Deque<String> list_4 = new LinkedList<>(Arrays.asList("2","2","2"));
+        System.out.println("--------------------------------------------------------------");
+
+        System.out.println("На старте: ");
+        System.out.println("Первая пара: " + list_1 + ", " + list_2);
+        System.out.println("Вторая пара: " + list_3 + ", " + list_4);
+        System.out.println();
+
+        int first_num = makeInt(list_1);
+        int second_num = makeInt(list_2);
+        int composition = first_num * second_num;
+        System.out.printf("%d * %d = %d\n", first_num, second_num, composition);
+        // Вторая пара чисел
+        first_num = makeInt(list_3);
+        second_num = makeInt(list_4);
+        int composition_2 = first_num * second_num;
+        System.out.printf("%d * %d = %d\n", first_num, second_num, composition_2);
+
+        System.out.println();
+        System.out.println("Результирующие коллекции: ");
+        System.out.println(Pack(composition));
+        System.out.println(Pack(composition_2));
+
+        System.out.println("--------------------------------------------------------------");
+        System.out.println();
+        System.out.println("Да пребудет с нами Java....");
+        
+    }
+    
 }
