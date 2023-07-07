@@ -42,7 +42,6 @@ public class Task1 {
         return q;
     }
     public static void main(String[] args) {
-
         Deque<String> list_1 = new LinkedList<>(Arrays.asList("3","2","1"));
         Deque<String> list_2 = new LinkedList<>(Arrays.asList("7","4","-"));
         Deque<String> list_3 = new LinkedList<>(Arrays.asList("5","2"));
