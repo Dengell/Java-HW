@@ -50,7 +50,7 @@ public class Task1 {
         Deque<String> list_4 = new LinkedList<>(Arrays.asList("2","2","2"));
         System.out.println("--------------------------------------------------------------");
 
-        System.out.println("На старте: ");
+        System.out.println("Задано: ");
         System.out.println("Первая пара: " + list_1 + ", " + list_2);
         System.out.println("Вторая пара: " + list_3 + ", " + list_4);
         System.out.println();
@@ -66,14 +66,9 @@ public class Task1 {
         System.out.printf("%d * %d = %d\n", first_num, second_num, composition_2);
 
         System.out.println();
-        System.out.println("Результирующие коллекции: ");
+        System.out.println("Результат: ");
         System.out.println(Pack(composition));
         System.out.println(Pack(composition_2));
-
-        System.out.println("--------------------------------------------------------------");
-        System.out.println();
-        System.out.println("Да пребудет с нами Java....");
-        
     }
     
 }
