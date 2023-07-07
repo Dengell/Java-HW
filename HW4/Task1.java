@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Random;
 
 public class Task1 {
     static int makeInt(Deque<String> arr) {
