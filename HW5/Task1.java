@@ -2,6 +2,7 @@ package HW5;
 
 import java.util.*;
 
+
 public class Task1 {
     static void sortedPrint(Map<String, ArrayList> map) {
         Set<String> keySet = map.keySet();
